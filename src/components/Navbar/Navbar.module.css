@@ -1,0 +1,23 @@
+.container{
+    padding: 25px;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav a{
+    color: black;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.nav a:hover{
+    color: #E85659;
+}
+
+.nav a:focus{
+    color: #E85659;
+}

@@ -1,4 +1,19 @@
 .container{
     width: 100%;
-    padding: 20px;
+    border-bottom: .5px solid #d0d0d0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.git{
+    margin-left: 0 auto;
+}
+
+.logo{
+    margin: 0 auto;
+}
+
+.logo img{
+    width: 70px;
 }
