@@ -6,8 +6,8 @@ const Navbar: React.FC = (props): React.ReactElement => {
     return <div className={s.container}>
         <div className={s.nav}>
           <NavLink to='/'>Home</NavLink>
-          <NavLink to='/category'>Categories</NavLink>
-          <NavLink to='/'>Recipes</NavLink>
+          <NavLink to='/categories'>Categories</NavLink>
+          <NavLink to='/recipes'>Recipes</NavLink>
         </div>
 
     </div>;
