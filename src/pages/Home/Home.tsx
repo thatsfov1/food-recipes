@@ -2,12 +2,13 @@ import React from "react";
 import s from './Home.module.css'
 import banner from '../../assets/recipes-banner.jpeg'
 import {Hit} from '../../models/models'
-import {useRandomRecipesQuery, useSearchRecipesQuery } from "../../store/recipes.api";
-import SingleRecipe from "../../components/SingleRecipe";
+import SingleRecipe from "../../components/SingleRecipe/SingleRecipe";
+import { useHomeRecipesQuery } from "../../store/recipes.api";
 
 const Home: React.FC = ()=> {
 
-    const {isLoading,data,isError } = useRandomRecipesQuery()
+    const {isLoading, isError, error, data} = useHomeRecipesQuery()
+    console.log(data)
 
     return <div className={s.container}>
             <div className={s.banner}>
@@ -16,7 +17,7 @@ const Home: React.FC = ()=> {
             <div className={s.content}>
                 <div className={s.title}>Recipes</div>
                 <div className={s.recipes}>
-                    {data.hits.map((item:Hit) => <SingleRecipe key={item.recipe.uri} hit={item}/>)}
+                    {data?.hits.map((item:Hit) => <SingleRecipe key={item.recipe.uri} hit={item}/>)}
                 </div>
             </div>
     </div>;

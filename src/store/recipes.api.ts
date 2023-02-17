@@ -1,14 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ServerResponse } from '../models/models'
 
-// @ts-ignore
 export const recipesApi = createApi({
     reducerPath:'recipes/api',
     baseQuery: fetchBaseQuery({
         baseUrl: ' https://api.edamam.com/'
     }),
-    endpoints: build => ({
-        searchRecipes: build.query<any, string >({
+    endpoints: builder => ({
+        searchRecipes: builder.query<any, string >({
             query: (search:string) => ({
                 url: `api/recipes/v2`,
                 params:{
@@ -19,7 +18,7 @@ export const recipesApi = createApi({
                 }
             })
         }),
-        randomRecipes: build.query<any, void>({
+        homeRecipes: builder.query<any, void>({
             query: () => ({
                 url: `api/recipes/v2`,
                 params:{
@@ -34,4 +33,4 @@ export const recipesApi = createApi({
     })
 })
 
-export const {useSearchRecipesQuery, useRandomRecipesQuery} = recipesApi
+export const {useSearchRecipesQuery, useHomeRecipesQuery} = recipesApi

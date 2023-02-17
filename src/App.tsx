@@ -12,7 +12,6 @@ const App:React.FC =  () =>{
 
     const [search, setSearch] = useState<string>('');
 
-
     return (
     <div className='app'>
         <Header />

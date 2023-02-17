@@ -7,3 +7,19 @@
     border-radius: 5px;
 }
 
+.title{
+    text-align: center;
+    padding: 20px;
+    color: #2d2d2d;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.recipes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
