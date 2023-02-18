@@ -1,0 +1,47 @@
+.categories{
+    margin-top: 70px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+.singleCategory{
+    border-radius: 5px;
+    margin: 0;
+    overflow: hidden;
+    width: 40%;
+    position: relative;
+    color: white;
+    cursor: pointer;
+}
+
+.catImage img{
+    height: 333px;
+    border-radius: 5px;
+    width: 100%;
+    filter: brightness(0.6);
+}
+
+.catImage{
+
+    transition: .3s;
+}
+
+.catImage:hover{
+    transform: scale(1.1);
+}
+
+.singleCategory span{
+    font-size: 2rem;
+    z-index: 999;
+    position: absolute;
+    top: 80%;
+    padding:0 3px 5px 3px;
+    border-bottom: 3px solid #E85659;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+

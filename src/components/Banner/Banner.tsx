@@ -1,12 +1,12 @@
 import React from "react";
+import './Banner.css'
 
-type Props ={
-    children:string
-}
 
-const Banner = ({children}:Props) => {
+const Banner = ({children}:{children:string}) => {
     return <div className='banner'>
-        {children}
+        <span>
+            {children}
+        </span>
     </div>;
 }
 

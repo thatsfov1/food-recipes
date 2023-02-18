@@ -1,3 +1,16 @@
 .banner{
     background: url("../../assets/banner.jpeg");
+    background-size: 100%;
+    margin: 0 auto;
+    padding: 70px;
+    border-radius: 5px;
+
+}
+
+.banner span{
+    color: #2d2d2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
 }

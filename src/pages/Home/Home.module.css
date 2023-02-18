@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+a{
+    text-decoration: none;
+}
+
 .banner img{
     max-width: 100%;
     border-radius: 5px;
