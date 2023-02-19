@@ -7,6 +7,7 @@ import { useHomeRecipesQuery } from "../../store/recipes.api";
 import { NavLink } from "react-router-dom";
 import Preloader from "../../components/Preloader/Preloader";
 import ErrorPage from "../../components/ErrorPage/ErrorPage";
+import RecipesRaw from "../../components/RecipesRaw/RecipesRaw";
 
 const Home: React.FC = ()=> {
 
@@ -19,9 +20,7 @@ const Home: React.FC = ()=> {
             <div className={s.content}>
                 <div className={s.title}>Recipes</div>
                 {isLoading && <Preloader/>}
-                <div className={s.recipes}>
-                    {data?.hits.map((item:Hit) => <SingleRecipe key={item.recipe.uri} hit={item}/>)}
-                </div>
+                <RecipesRaw data={data}/>
                 {isError && <ErrorPage error={error}/>}
             </div>
     </div>;

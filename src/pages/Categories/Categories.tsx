@@ -6,6 +6,7 @@ import dinner from '../../assets/dinner.jpeg'
 import lunch from '../../assets/lunch.jpeg'
 import teatime from '../../assets/teatime.png'
 import snack from '../../assets/snack.jpeg'
+import { NavLink } from 'react-router-dom'
 
 const Categories = () => {
   return (
@@ -24,12 +25,12 @@ const Categories = () => {
 
 
 const SingleCategory = ({mealType, mealImage}:{mealType:string,mealImage:string}) =>{
-    return <div className={s.singleCategory}>
+    return <NavLink to={`/category/${mealType}`} className={s.singleCategory}>
             <div className={s.catImage}>
                 <img src={mealImage} alt={mealType}/>
             </div>
             <span>{mealType}</span>
-    </div>
+    </NavLink>
 }
 
 export default Categories

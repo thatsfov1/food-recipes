@@ -30,6 +30,17 @@ export const recipesApi = createApi({
                 }
             })
         }),
+        categoryRecipes: builder.query<ServerResponse, string>({
+            query: (mealType:string) => ({
+                url: `api/recipes/v2`,
+                params: {
+                    type: 'public',
+                    mealType:mealType,
+                    app_id: 'd721d296',
+                    app_key: '931be7096c690b68bf0a1fd0ec727556'
+                }
+            })
+        }),
         singleRecipe: builder.query<Recipe, string>({
             query: (id:string) => ({
                 url: `api/recipes/v2/${id}`,
@@ -45,4 +56,4 @@ export const recipesApi = createApi({
     })
 })
 
-export const {useSearchRecipesQuery, useHomeRecipesQuery, useSingleRecipeQuery} = recipesApi
+export const {useSearchRecipesQuery, useHomeRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi

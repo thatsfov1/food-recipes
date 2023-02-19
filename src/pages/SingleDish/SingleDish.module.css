@@ -25,3 +25,94 @@ svg{
     cursor: pointer;
     margin-left: auto;
 }
+
+.allDesc{
+    display: flex;
+}
+
+.dishImage{
+    color: #2d2d2d;
+}
+
+.dishImage img{
+    border-radius: 5px;
+    width: 400px;
+    height: 400px;
+}
+
+.addButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    padding: 10px;
+    transition: .3s;
+}
+
+.addButton:hover{
+    transform: scale(1.02);
+    filter: brightness(102%);
+}
+
+.addButton:active{
+    transform: scale(0.98);
+    filter: brightness(98%);
+}
+
+.smallDesc{
+    display: flex;
+    gap: 5px;
+    color: #2d2d2d;
+    margin-left: 10px;
+}
+
+.singleSmallDesc{
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.singleSmallDesc span{
+    display: flex;
+    flex-direction: column;
+}
+
+.mainDesc{
+    color: #2d2d2d;
+    display: flex;
+    margin-top: 5px ;
+    justify-content: space-between;
+}
+
+.preparing{
+    border-right: 1px solid #bdbdbd;
+    padding: 10px;
+    padding-right: 30px;
+    width: 60%;
+}
+
+.tags{
+    width: 36%;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+
+.singleIngr{
+    margin-bottom: 5px;
+}
+
+.dishRecipe{
+    margin-top: 20px;
+}
+
+.recipeTitle{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d2d2d;
+    text-transform: uppercase;
+    text-align: center;
+}

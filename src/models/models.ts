@@ -1,4 +1,10 @@
  export interface Links {
+        next?:Next
+    }
+
+    export interface Next {
+          href:string,
+          title:string
     }
 
     export interface THUMBNAIL {

@@ -2,6 +2,7 @@ import React from 'react'
 import s from './Header.module.css'
 import {AiFillGithub} from "react-icons/all";
 import logo from '../../assets/logo.png'
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -9,9 +10,9 @@ const Header = () => {
         <a href='https://github.com/thatsfov1' target='_blank' className={s.git}>
             <AiFillGithub size='50px' color='#6a6a6a'/>
         </a>
-        <div className={s.logo}>
+        <NavLink to='/' className={s.logo}>
             <img src={logo}/>
-        </div>
+        </NavLink>
     </div>
   )
 }

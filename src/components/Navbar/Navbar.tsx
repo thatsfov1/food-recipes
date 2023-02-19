@@ -8,6 +8,7 @@ const Navbar: React.FC = (props): React.ReactElement => {
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/categories'>Categories</NavLink>
           <NavLink to='/recipes'>Recipes</NavLink>
+          <NavLink to='/library'>My library</NavLink>
         </div>
 
     </div>;

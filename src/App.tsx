@@ -9,6 +9,9 @@ import Categories from './pages/Categories/Categories';
 import Recipes from './pages/Recipes/Recipes';
 import SingleDish from './pages/SingleDish/SingleDish';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import RecipesRaw from './components/RecipesRaw/RecipesRaw';
+import Library from './pages/Library/Library';
+import AllRecipes from './pages/AllRecipes/AllRecipes';
 
 const App:React.FC =  () =>{
 
@@ -22,8 +25,10 @@ const App:React.FC =  () =>{
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/categories' element={<Categories/>}/>
+                <Route path='/category/:mealType' element={<AllRecipes/>}/>
                 <Route path='/recipes' element={<Recipes/>}/>
                 <Route path='/recipe/:id' element={<SingleDish/>}/>
+                <Route path='/library' element={<Library/>}/>
                 <Route path='*' element={<ErrorPage/>}/>
             </Routes>
         </div>
