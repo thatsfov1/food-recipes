@@ -1,23 +1,36 @@
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ErrorPage from '../../components/ErrorPage/ErrorPage'
+import RecipesPagination from '../../components/Pagination/Pagination'
 import Preloader from '../../components/Preloader/Preloader'
 import RecipesRaw from '../../components/RecipesRaw/RecipesRaw'
-import { useCategoryRecipesQuery } from '../../store/recipes.api'
+import { ServerResponse } from '../../models/models'
+import { useSearchRecipesQuery } from '../../store/recipes.api'
 
 const AllRecipes = () => {
-    const {mealType} = useParams()
-    // @ts-ignore
-    const {isLoading, isError, data} = useCategoryRecipesQuery(mealType)
-    // const [nextData, setNextData] = useState<ServerResponse>();
 
-    const nextPageUrl = data?._links?.next?.href
-    console.log(nextPageUrl)
+    const [offset, setOffset] = useState(0);
+    const {mealType} = useParams()
+    const {isLoading, isError, data} = useSearchRecipesQuery({type:'dessert',offset:offset})
+
+    const onPageChanged = (event: React.ChangeEvent<unknown>, value: number) => {
+        setOffset(value*10)
+        window.scroll(0,0)
+    }
+
+    useEffect(() => {
+        console.log(offset)
+    }, [offset]);
+
+
   return (
     <div>
         {isLoading && <Preloader/>}
         {isError && <ErrorPage/>}
         <RecipesRaw data={data}/>
+        <div style={{display:'flex', justifyContent:'center'}}>
+            <RecipesPagination onPageChanged={onPageChanged} totalResults={data?.totalResults} />
+        </div>
     </div>
   )
 }

@@ -1,547 +1,262 @@
- export interface Links {
-        next?:Next
+export interface ISearchParams {
+    query?: string,
+    cuisine?: string,
+    excludeCuisine?: string,
+    diet?: string,
+    equipment?: string,
+    type?: string,
+    sort?: string,
+    sortDirection?: 'asc' | 'desc',
+    minCalories?: number,
+    maxCalories?: number,
+    minAlcohol?: number,
+    maxAlcohol?: number,
+    offset?: number,
+    number?: number
+}
+
+
+export interface Us {
+    amount: number;
+    unitShort: string;
+    unitLong: string;
+}
+
+export interface Metric {
+    amount: number;
+    unitShort: string;
+    unitLong: string;
+}
+
+export interface Measures {
+    us: Us;
+    metric: Metric;
+}
+
+export interface ExtendedIngredient {
+    id: number;
+    aisle: string;
+    image: string;
+    consistency: string;
+    name: string;
+    nameClean: string;
+    original: string;
+    originalName: string;
+    amount: number;
+    unit: string;
+    meta: string[];
+    measures: Measures;
+}
+
+export interface Ingredient {
+    id: number;
+    name: string;
+    localizedName: string;
+    image: string;
+}
+
+export interface Temperature {
+    number: number;
+    unit: string;
+}
+
+export interface Equipment {
+    id: number;
+    name: string;
+    localizedName: string;
+    image: string;
+    temperature: Temperature;
+}
+
+export interface Length {
+    number: number;
+    unit: string;
+}
+
+export interface Step {
+    number: number;
+    step: string;
+    ingredients: Ingredient[];
+    equipment: Equipment[];
+    length: Length;
+}
+
+export interface AnalyzedInstruction {
+    name: string;
+    steps: Step[];
+}
+
+export interface Recipe {
+    vegetarian: boolean;
+    vegan: boolean;
+    glutenFree: boolean;
+    dairyFree: boolean;
+    veryHealthy: boolean;
+    cheap: boolean;
+    veryPopular: boolean;
+    sustainable: boolean;
+    lowFodmap: boolean;
+    weightWatcherSmartPoints: number;
+    gaps: string;
+    preparationMinutes: number;
+    cookingMinutes: number;
+    aggregateLikes: number;
+    healthScore: number;
+    creditsText: string;
+    sourceName: string;
+    pricePerServing: number;
+    extendedIngredients: ExtendedIngredient[];
+    id: number;
+    title: string;
+    readyInMinutes: number;
+    servings: number;
+    sourceUrl: string;
+    image: string;
+    imageType: string;
+    summary: string;
+    cuisines: string[];
+    dishTypes: string[];
+    diets: string[];
+    occasions: string[];
+    instructions: string;
+    analyzedInstructions: AnalyzedInstruction[];
+    originalId?: any;
+    spoonacularSourceUrl: string;
+    license: string;
+}
+
+export interface ServerResponse {
+    recipes: Recipe[];
+}
+
+
+    export interface Us {
+        amount: number;
+        unitShort: string;
+        unitLong: string;
     }
 
-    export interface Next {
-          href:string,
-          title:string
+    export interface Metric {
+        amount: number;
+        unitShort: string;
+        unitLong: string;
     }
 
-    export interface THUMBNAIL {
-        url: string;
-        width: number;
-        height: number;
+    export interface Measures {
+        us: Us;
+        metric: Metric;
     }
 
-    export interface SMALL {
-        url: string;
-        width: number;
-        height: number;
+    export interface ExtendedIngredient {
+        id: number;
+        aisle: string;
+        image: string;
+        consistency: string;
+        name: string;
+        nameClean: string;
+        original: string;
+        originalName: string;
+        amount: number;
+        unit: string;
+        meta: string[];
+        measures: Measures;
     }
 
-    export interface REGULAR {
-        url: string;
-        width: number;
-        height: number;
-    }
-
-    export interface LARGE {
-        url: string;
-        width: number;
-        height: number;
-    }
-
-    export interface Images {
-        THUMBNAIL: THUMBNAIL;
-        SMALL: SMALL;
-        REGULAR: REGULAR;
-        LARGE: LARGE;
+    export interface WinePairing {
+        pairedWines: any[];
+        pairingText: string;
+        productMatches: any[];
     }
 
     export interface Ingredient {
-        text: string;
-        quantity: number;
-        measure: string;
-        food: string;
-        weight: number;
-        foodCategory: string;
-        foodId: string;
+        id: number;
+        name: string;
+        localizedName: string;
         image: string;
     }
 
-    export interface ENERCKCAL {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FAT {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FASAT {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FATRN {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FAMS {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FAPU {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CHOCDF {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CHOCDFNet {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FIBTG {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface SUGAR {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface SUGARAdded {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface PROCNT {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CHOLE {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface NA {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CA {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface MG {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface K {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FE {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface ZN {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface P {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITARAE {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITC {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface THIA {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface RIBF {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface NIA {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITB6A {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FOLDFE {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FOLFD {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FOLAC {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITB12 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITD {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface TOCPHA {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITK1 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface SugarAlcohol {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface WATER {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface TotalNutrients {
-        ENERC_KCAL: ENERCKCAL;
-        FAT: FAT;
-        FASAT: FASAT;
-        FATRN: FATRN;
-        FAMS: FAMS;
-        FAPU: FAPU;
-        CHOCDF: CHOCDF;
-        CHOCDFnet: CHOCDFNet;
-        FIBTG: FIBTG;
-        SUGAR: SUGAR;
-        SUGARadded: SUGARAdded;
-        PROCNT: PROCNT;
-        CHOLE: CHOLE;
-        NA: NA;
-        CA: CA;
-        MG: MG;
-        K: K;
-        FE: FE;
-        ZN: ZN;
-        P: P;
-        VITA_RAE: VITARAE;
-        VITC: VITC;
-        THIA: THIA;
-        RIBF: RIBF;
-        NIA: NIA;
-        VITB6A: VITB6A;
-        FOLDFE: FOLDFE;
-        FOLFD: FOLFD;
-        FOLAC: FOLAC;
-        VITB12: VITB12;
-        VITD: VITD;
-        TOCPHA: TOCPHA;
-        VITK1: VITK1;
-        Sugaralcohol: SugarAlcohol;
-        WATER: WATER;
-    }
-
-    export interface ENERCKCAL2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FAT2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FASAT2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CHOCDF2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FIBTG2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface PROCNT2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CHOLE2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface NA2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface CA2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface MG2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface K2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FE2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface ZN2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface P2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITARAE2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITC2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface THIA2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface RIBF2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface NIA2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITB6A2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface FOLDFE2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITB122 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITD2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface TOCPHA2 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface VITK12 {
-        label: string;
-        quantity: number;
-        unit: string;
-    }
-
-    export interface TotalDaily {
-        ENERC_KCAL: ENERCKCAL2;
-        FAT: FAT2;
-        FASAT: FASAT2;
-        CHOCDF: CHOCDF2;
-        FIBTG: FIBTG2;
-        PROCNT: PROCNT2;
-        CHOLE: CHOLE2;
-        NA: NA2;
-        CA: CA2;
-        MG: MG2;
-        K: K2;
-        FE: FE2;
-        ZN: ZN2;
-        P: P2;
-        VITA_RAE: VITARAE2;
-        VITC: VITC2;
-        THIA: THIA2;
-        RIBF: RIBF2;
-        NIA: NIA2;
-        VITB6A: VITB6A2;
-        FOLDFE: FOLDFE2;
-        VITB12: VITB122;
-        VITD: VITD2;
-        TOCPHA: TOCPHA2;
-        VITK1: VITK12;
-    }
-
-    export interface Sub {
-        label: string;
-        tag: string;
-        schemaOrgTag: string;
-        total: number;
-        hasRDI: boolean;
-        daily: number;
-        unit: string;
-    }
-
-    export interface Digest {
-        label: string;
-        tag: string;
-        schemaOrgTag: string;
-        total: number;
-        hasRDI: boolean;
-        daily: number;
-        unit: string;
-        sub: Sub[];
-    }
-
-    export interface Recipe {
-        uri: string;
-        label: string;
+    export interface Equipment {
+        id: number;
+        name: string;
+        localizedName: string;
         image: string;
-        images: Images;
-        source: string;
-        url: string;
-        shareAs: string;
-        yield: number;
-        dietLabels: string[];
-        healthLabels: string[];
-        cautions: string[];
-        ingredientLines: string[];
+    }
+
+    export interface Length {
+        number: number;
+        unit: string;
+    }
+
+    export interface Step {
+        number: number;
+        step: string;
         ingredients: Ingredient[];
-        calories: number;
-        totalWeight: number;
-        totalTime: number;
-        cuisineType: string[];
-        mealType: string[];
-        dishType: string[];
-        totalNutrients?: TotalNutrients;
-        totalDaily: TotalDaily;
-        digest: Digest[];
+        equipment: Equipment[];
+        length: Length;
     }
 
-    export interface Self {
-        href: string;
+    export interface AnalyzedInstruction {
+        name: string;
+        steps: Step[];
+    }
+
+    export interface SingleRecipe {
+        vegetarian: boolean;
+        vegan: boolean;
+        glutenFree: boolean;
+        dairyFree: boolean;
+        veryHealthy: boolean;
+        cheap: boolean;
+        veryPopular: boolean;
+        sustainable: boolean;
+        lowFodmap: boolean;
+        weightWatcherSmartPoints: number;
+        gaps: string;
+        preparationMinutes: number;
+        cookingMinutes: number;
+        aggregateLikes: number;
+        healthScore: number;
+        creditsText: string;
+        license: string;
+        sourceName: string;
+        pricePerServing: number;
+        extendedIngredients: ExtendedIngredient[];
+        id: number;
         title: string;
+        readyInMinutes: number;
+        servings: number;
+        sourceUrl: string;
+        image: string;
+        imageType: string;
+        summary: string;
+        cuisines: any[];
+        dishTypes: string[];
+        diets: any[];
+        occasions: any[];
+        winePairing: WinePairing;
+        instructions: string;
+        analyzedInstructions: AnalyzedInstruction[];
+        originalId?: any;
+        spoonacularSourceUrl: string;
     }
 
-    export interface Links2 {
-        self: Self;
+    export interface Result {
+        id: number;
+        title: string;
+        image: string;
+        imageType: string;
     }
 
-    export interface Hit {
-        recipe: Recipe;
-        _links: Links2;
+    export interface SearchResponse {
+        results: Result[];
+        offset: number;
+        number: number;
+        totalResults: number;
     }
 
-    export interface ServerResponse {
-        from: number;
-        to: number;
-        count: number;
-        _links: Links;
-        hits: Hit[];
-    }
+
+
+
 
 
 

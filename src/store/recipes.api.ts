@@ -1,59 +1,50 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {Hit, Recipe, ServerResponse } from '../models/models'
+import { ISearchParams, SearchResponse, ServerResponse, SingleRecipe } from '../models/models'
 
 export const recipesApi = createApi({
     reducerPath:'recipes/api',
     baseQuery: fetchBaseQuery({
-        baseUrl: ' https://api.edamam.com/'
+        baseUrl: ' https://api.spoonacular.com/recipes/'
     }),
     endpoints: builder => ({
-        searchRecipes: builder.query<any, string >({
-            query: (search:string) => ({
-                url: `api/recipes/v2`,
+        searchRecipes: builder.query<SearchResponse, ISearchParams >({
+            query: ({query,type,offset}) => ({
+                url: `complexSearch`,
                 params:{
-                    type:'public',
-                    q:search,
-                    app_id:'d721d296',
-                    app_key:'931be7096c690b68bf0a1fd0ec727556'
+                    query:query,
+                    type:type,
+                    offset:offset,
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
                 }
             })
         }),
-        homeRecipes: builder.query<ServerResponse, void>({
+        randomRecipes: builder.query<ServerResponse, void>({
+            query: () => ({
+                url: `random`,
+                params: {
+                    number:60,
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
+                },
+            })
+        }),
+        categoryRecipes: builder.query<any, void>({
             query: () => ({
                 url: `api/recipes/v2`,
                 params: {
-                    type: 'public',
-                    random: true,
-                    diet: 'balanced',
-                    app_id: 'd721d296',
-                    app_key: '931be7096c690b68bf0a1fd0ec727556'
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
                 }
             })
         }),
-        categoryRecipes: builder.query<ServerResponse, string>({
-            query: (mealType:string) => ({
-                url: `api/recipes/v2`,
-                params: {
-                    type: 'public',
-                    mealType:mealType,
-                    app_id: 'd721d296',
-                    app_key: '931be7096c690b68bf0a1fd0ec727556'
-                }
-            })
-        }),
-        singleRecipe: builder.query<Recipe, string>({
+        singleRecipe: builder.query<SingleRecipe, string>({
             query: (id:string) => ({
-                url: `api/recipes/v2/${id}`,
+                url: `${id}/information`,
                 params: {
-                    type: 'public',
-                    app_id: 'd721d296',
-                    app_key: '931be7096c690b68bf0a1fd0ec727556'
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
                 }
             }),
-            transformResponse: (response:Hit) => response.recipe
         }),
 
     })
 })
 
-export const {useSearchRecipesQuery, useHomeRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi
+export const {useSearchRecipesQuery,useRandomRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi

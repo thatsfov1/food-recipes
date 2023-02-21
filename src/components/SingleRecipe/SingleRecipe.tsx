@@ -3,36 +3,34 @@ import { BiTimeFive } from 'react-icons/bi'
 import { FaWeight } from 'react-icons/fa'
 import { IoFastFoodOutline } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
-import { Hit } from '../../models/models'
+import { Recipe, Result } from '../../models/models'
 import s from './SingleRecipe.module.css'
+import noimage from '../../assets/no-image.png'
+import { AiOutlineLike } from 'react-icons/ai'
 
-const SingleRecipe = ({hit}:{hit: Hit}) => {
+const SingleRecipe = ({recipe}:{recipe: Recipe}) => {
 
-
-let linkPart = hit._links.self.href.split('?')
-linkPart = linkPart[0].split('/')
-const id = linkPart.at(-1)
 
   return (
-    <NavLink to={`/recipe/${id}`} className={s.container}>
+    <NavLink to={`/recipe/${recipe.id}`} className={s.container}>
       <div className={s.image}>
-        <img src={hit.recipe.image} alt='food'/>
+          {recipe.image ? <img src={recipe.image} alt='food'/> : <img src={noimage}/>}
       </div>
-      <div className={s.type}>
-        {hit.recipe.mealType}
-      </div>
+        {recipe.sourceName && <div className={s.source}>
+            {recipe.sourceName}
+        </div>}
         <div className={s.title}>
-            {hit.recipe.label}
+            {recipe.title}
         </div>
         <div className={s.info}>
-            {hit.recipe.totalTime>1 && <span>
-                <BiTimeFive/> {hit.recipe.totalTime}
+            {recipe.readyInMinutes>1 && <span>
+                <BiTimeFive/> {recipe.readyInMinutes}
             </span>}
             <span>
-                <FaWeight/> {Math.ceil(hit.recipe.totalWeight)}
+                <FaWeight/> {Math.ceil(recipe.weightWatcherSmartPoints)}
             </span>
             <span>
-                <IoFastFoodOutline/> {Math.ceil(hit.recipe.calories)}
+                <AiOutlineLike/> {Math.ceil(recipe.aggregateLikes)}
             </span>
         </div>
     </NavLink>
