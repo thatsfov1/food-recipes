@@ -11,16 +11,12 @@ const AllRecipes = () => {
 
     const [offset, setOffset] = useState(0);
     const {mealType} = useParams()
-    const {isLoading, isError, data} = useSearchRecipesQuery({type:'dessert',offset:offset})
+    const {isLoading, isError, data} = useSearchRecipesQuery({type:mealType,offset:offset})
 
     const onPageChanged = (event: React.ChangeEvent<unknown>, value: number) => {
         setOffset(value*10)
         window.scroll(0,0)
     }
-
-    useEffect(() => {
-        console.log(offset)
-    }, [offset]);
 
 
   return (
