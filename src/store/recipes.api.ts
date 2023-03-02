@@ -8,12 +8,13 @@ export const recipesApi = createApi({
     }),
     endpoints: builder => ({
         searchRecipes: builder.query<SearchResponse, ISearchParams >({
-            query: ({query,type,offset}) => ({
+            query: ({debounced,type,offset = 0,sort}) => ({
                 url: `complexSearch`,
                 params:{
-                    query:query,
+                    query:debounced,
                     type:type,
                     offset:offset,
+                    sort:sort,
                     apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
                 }
             })
@@ -47,4 +48,4 @@ export const recipesApi = createApi({
     })
 })
 
-export const {useSearchRecipesQuery,useRandomRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi
+export const {useSearchRecipesQuery, useLazySearchRecipesQuery,useRandomRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi

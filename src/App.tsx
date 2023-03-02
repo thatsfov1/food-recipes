@@ -15,8 +15,6 @@ import AllRecipes from './pages/AllRecipes/AllRecipes';
 
 const App:React.FC =  () =>{
 
-    const [search, setSearch] = useState<string>('');
-
     return (
     <div className='app'>
         <Header />

@@ -1,5 +1,7 @@
+import { MutableRefObject } from "react";
+
 export interface ISearchParams {
-    query?: string,
+    debounced?: string,
     cuisine?: string,
     excludeCuisine?: string,
     diet?: string,

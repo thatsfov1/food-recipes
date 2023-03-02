@@ -12,7 +12,6 @@ type Props ={
 
 const RecipesPagination = ({onPageChanged,totalResults}:Props) => {
 
-
   return (
     <div>
         <Stack spacing={2}>

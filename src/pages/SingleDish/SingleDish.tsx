@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BiBookBookmark, BiDish, BiShareAlt, BiTimeFive} from 'react-icons/bi'
 import {BsBookmarksFill, BsFillPersonFill, BsPeopleFill} from 'react-icons/bs'
 import {FaWeight} from 'react-icons/fa'
@@ -8,21 +8,29 @@ import {useParams} from 'react-router-dom'
 import ErrorPage from '../../components/ErrorPage/ErrorPage'
 import Preloader from '../../components/Preloader/Preloader'
 import { useActions } from '../../hooks/actions'
+import { useAppSelector } from '../../hooks/redux'
 import { Ingredient, Step } from '../../models/models'
 import {useSingleRecipeQuery} from '../../store/recipes.api'
 import s from './SingleDish.module.css'
+import noimage from '../../assets/no-image.png'
 
 const SingleDish = () => {
-
+    const { recipes } = useAppSelector(state => state.recipesLibrary)
     const {id} = useParams()
-    // @ts-ignore
-    const {isLoading, isError, error, data} = useSingleRecipeQuery(id)
+    const {isLoading, isError, error, data} = useSingleRecipeQuery(id!)
+    const [isInLib, setIsInLib] = useState(recipes.includes(data!));
 
-    const {addRecipe} = useActions()
+    const {addRecipe, removeRecipe} = useActions()
 
     const addToLibrary = (event: React.MouseEvent<HTMLButtonElement>) => {
             event.preventDefault()
             data && addRecipe(data)
+            setIsInLib(true)
+    }
+    const removeFromLibrary = (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault()
+            data && removeRecipe(data.id)
+            setIsInLib(false)
     }
 
     return (
@@ -40,20 +48,24 @@ const SingleDish = () => {
                     <div className={s.source}>
                        Recipe by <a target='_blank' href={data?.sourceUrl}>{data?.sourceName}</a>
                     </div>
-                    <button onClick={addToLibrary} className={s.addButton}>
-                        <BsBookmarksFill/> Save to my library
-                    </button>
+                    {isInLib ? <button onClick={removeFromLibrary} className={s.addButton}>
+                                 <BsBookmarksFill/> Remove from my library
+                                 </button>
+                            : <button onClick={addToLibrary} className={s.addButton}>
+                                <BsBookmarksFill/> Save to my library
+                            </button>
+                    }
                 </div>
                 <div className={s.dishContainer}>
                     <div className={s.mainInfo}>
                         <div className={s.dishImage}>
-                            <img alt='dish-image' src={data?.image}/>
+                            <img alt='dish-image' src={data?.image || noimage}/>
                         </div>
                         <div className={s.recipeDetailsContainer}>
                             <div className={s.recipeDetails}>
-                                <SingleDetail title='Prep time:' condition={data?.preparationMinutes > -1 ? data?.preparationMinutes + ' Min' : 'Unknown'}/>
-                                <SingleDetail title='Cook time:' condition={data?.cookingMinutes > -1 ? data?.cookingMinutes + ' Min' : 'Unknown'}/>
-                                <SingleDetail title='Total time:' condition={data?.readyInMinutes > -1 ? data?.readyInMinutes + ' Min' : 'Unknown'}/>
+                                <SingleDetail title='Prep time:' condition={data?.preparationMinutes! > -1 ? data?.preparationMinutes + ' Min' : 'Unknown'}/>
+                                <SingleDetail title='Cook time:' condition={data?.cookingMinutes! > -1 ? data?.cookingMinutes + ' Min' : 'Unknown'}/>
+                                <SingleDetail title='Total time:' condition={data?.readyInMinutes! > -1 ? data?.readyInMinutes + ' Min' : 'Unknown'}/>
                                 <SingleDetail title='Servings:' condition={data?.servings || 'Unknown'}/>
                                 <SingleDetail title='Yield:' condition={data?.servings + ' Servings' || 'Unknown'}/>
                             </div>
@@ -73,7 +85,7 @@ const SingleDish = () => {
                         </div>
                         <div className={s.directions}>
                             <span className={s.title}>Directions</span>
-                            {data?.analyzedInstructions[0].steps.map((step:Step) => <SingleStep key={step.number} step={step}/> )}
+                            {data?.analyzedInstructions[0] && data?.analyzedInstructions[0].steps.map((step:Step) => <SingleStep key={step.number} step={step}/> )}
                         </div>
                     </div>
                     <div className={s.features}>

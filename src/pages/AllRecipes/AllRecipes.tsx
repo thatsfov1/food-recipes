@@ -11,10 +11,10 @@ const AllRecipes = () => {
 
     const [offset, setOffset] = useState(0);
     const {mealType} = useParams()
-    const {isLoading, isError, data} = useSearchRecipesQuery({type:mealType,offset:offset})
+    const {isLoading, isError, data} = useSearchRecipesQuery({type:mealType,offset})
 
     const onPageChanged = (event: React.ChangeEvent<unknown>, value: number) => {
-        setOffset(value*10)
+        setOffset((value-1)*10)
         window.scroll(0,0)
     }
 
@@ -23,10 +23,7 @@ const AllRecipes = () => {
     <div>
         {isLoading && <Preloader/>}
         {isError && <ErrorPage/>}
-        <RecipesRaw data={data}/>
-        <div style={{display:'flex', justifyContent:'center'}}>
-            <RecipesPagination onPageChanged={onPageChanged} totalResults={data?.totalResults} />
-        </div>
+        <RecipesRaw onPageChanged={onPageChanged} data={data}/>
     </div>
   )
 }

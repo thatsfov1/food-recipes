@@ -20,8 +20,8 @@ export const recipesSlice = createSlice({
             state.recipes.push(action.payload)
             localStorage.setItem(RTQ_ADD_LIB, JSON.stringify(state.recipes))
         },
-        removeRecipe(state, action:PayloadAction<SingleRecipe>){
-            state.recipes = state.recipes.filter(rec => rec !== action.payload)
+        removeRecipe(state, action:PayloadAction<number>){
+            state.recipes = state.recipes.filter(rec => rec.id !== action.payload)
             localStorage.setItem(RTQ_ADD_LIB, JSON.stringify(state.recipes))
         }
     }

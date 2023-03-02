@@ -8,12 +8,26 @@ import Preloader from '../Preloader/Preloader'
 import SingleRecipe from '../SingleRecipe/SingleRecipe'
 import SingleSearchResult from '../SingleSearchResult/SingleSearchResult'
 
-const RecipesRaw = ({data}: { data?:SearchResponse }) => {
+
+type Props = {
+    data?:SearchResponse,
+    onPageChanged(event: React.ChangeEvent<unknown>, value: number): void
+}
+
+const RecipesRaw = ({data,onPageChanged}:Props ) => {
     return (
-      <div style={{display:'flex',flexWrap:'wrap',
-          justifyContent: 'space-between', gap: '30px'}}>
-          {data?.results.map((item:Result) => <SingleSearchResult key={item.id} recipe={item}/>)}
-      </div>
+        <div>
+            <div style={{
+                display: 'flex', flexWrap: 'wrap',
+                justifyContent: 'space-between', gap: '30px'
+            }}>
+                {data?.results.map((item: Result) => <SingleSearchResult key={item.id} recipe={item}/>)}
+            </div>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <RecipesPagination onPageChanged={onPageChanged} totalResults={data?.totalResults} />
+            </div>
+        </div>
+
   )
 }
 
