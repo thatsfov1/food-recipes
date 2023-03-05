@@ -117,3 +117,13 @@
 .sortDropdownItem:hover{
     background-color: #dedede;
 }
+
+@media (max-width: 500px) {
+    .searchField{
+        width: 90%;
+    }
+
+    .noMatches{
+        font-size: 2rem;
+    }
+}

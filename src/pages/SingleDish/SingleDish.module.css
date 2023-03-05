@@ -69,8 +69,8 @@ svg{
 
 .dishImage img{
     border-radius: 5px;
-    width: 600px;
-    height: 400px;
+    width: 80%;
+    height: 60%;
 }
 
 .recipeDetailsContainer{
@@ -98,14 +98,6 @@ svg{
 .recipeDetailTitle{
     font-weight: bold;
 }
-
-.nutritionsRedirect{
-    color: white;
-    font-size: 18px;
-    padding: 10px;
-    padding-left: 0;
-}
-
 
 
 .dishRecipe{
@@ -145,4 +137,39 @@ li span{
 .stepInfo{
     font-size: 18px;
 }
+
+.featuresRedirect{
+    padding: 5px;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nutritions{
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+}
+
+.singleNutrition{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:760px ) {
+    .container{
+        width: 80%;
+    }
+    .dishImage img{
+        width: 100%;
+        height: 100%;
+    }
+    .addButton{
+        width: 80%;
+    }
+    .recipeDetails{
+        gap: 15px;
+    }
+}
+
 

@@ -15,7 +15,8 @@ export const recipesApi = createApi({
                     type:type,
                     offset:offset,
                     sort:sort,
-                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577',
+
                 }
             })
         }),
@@ -24,23 +25,17 @@ export const recipesApi = createApi({
                 url: `random`,
                 params: {
                     number:60,
-                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577',
+
                 },
             })
         }),
-        categoryRecipes: builder.query<any, void>({
-            query: () => ({
-                url: `api/recipes/v2`,
-                params: {
-                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
-                }
-            })
-        }),
-        singleRecipe: builder.query<SingleRecipe, string>({
+        singleRecipe: builder.query<any, string>({
             query: (id:string) => ({
                 url: `${id}/information`,
                 params: {
-                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577'
+                    apiKey:'4a8d6c25ff14491a8fae9c4583d83577',
+                    includeNutrition:true
                 }
             }),
         }),
@@ -48,4 +43,4 @@ export const recipesApi = createApi({
     })
 })
 
-export const {useSearchRecipesQuery, useLazySearchRecipesQuery,useRandomRecipesQuery, useSingleRecipeQuery, useCategoryRecipesQuery} = recipesApi
+export const {useSearchRecipesQuery, useLazySearchRecipesQuery,useRandomRecipesQuery, useSingleRecipeQuery} = recipesApi

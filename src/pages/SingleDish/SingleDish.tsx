@@ -9,7 +9,7 @@ import ErrorPage from '../../components/ErrorPage/ErrorPage'
 import Preloader from '../../components/Preloader/Preloader'
 import { useActions } from '../../hooks/actions'
 import { useAppSelector } from '../../hooks/redux'
-import { Ingredient, Step } from '../../models/models'
+import {ExtendedIngredient, Ingredient, Step } from '../../models/models'
 import {useSingleRecipeQuery} from '../../store/recipes.api'
 import s from './SingleDish.module.css'
 import noimage from '../../assets/no-image.png'
@@ -32,7 +32,6 @@ const SingleDish = () => {
             data && removeRecipe(data.id)
             setIsInLib(false)
     }
-
     return (
         <div>
             {isError && <ErrorPage error={error}/>}
@@ -69,27 +68,49 @@ const SingleDish = () => {
                                 <SingleDetail title='Servings:' condition={data?.servings || 'Unknown'}/>
                                 <SingleDetail title='Yield:' condition={data?.servings + ' Servings' || 'Unknown'}/>
                             </div>
-                            <div className={s.featuresRedirect}>
+                            <a href="#nutritions" className={s.featuresRedirect}>
                                 Jump to <span>Features</span>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div className={s.dishRecipe}>
                         <div className={s.ingredients}>
                             <span className={s.title}>Ingredients</span>
                             <ul>
-                                {data?.extendedIngredients.map(ingr => <li key={ingr.id}>
+                                {data?.extendedIngredients.map((ingr:ExtendedIngredient) => <li key={ingr.id}>
                                     <span>{ingr.original}</span>
                                 </li>)}
                             </ul>
                         </div>
-                        <div className={s.directions}>
+                        {data?.analyzedInstructions[0] && <div className={s.directions}>
                             <span className={s.title}>Directions</span>
-                            {data?.analyzedInstructions[0] && data?.analyzedInstructions[0].steps.map((step:Step) => <SingleStep key={step.number} step={step}/> )}
-                        </div>
+                            {data?.analyzedInstructions[0].steps.map((step: Step) => (
+                                <SingleStep key={step.number} step={step}/>)
+                            )}
+                        </div>}
                     </div>
-                    <div className={s.features}>
-
+                    <div className={s.nutritionsContainer}>
+                        <span className={s.title}>
+                            Nutritions Facts (per serving)
+                        </span>
+                        <div id='nutritions' className={s.nutritions}>
+                            <div className={s.singleNutrition}>
+                                <b>{Math.floor(data?.nutrition.nutrients[0].amount)}</b>
+                                {data?.nutrition.nutrients[0].name}
+                            </div>
+                            <div className={s.singleNutrition}>
+                                <b>{Math.floor(data?.nutrition.nutrients[1].amount) + 'g'}</b>
+                                {data?.nutrition.nutrients[1].name}
+                            </div>
+                            <div className={s.singleNutrition}>
+                                <b>{Math.floor(data?.nutrition.nutrients[8].amount) + 'g'}</b>
+                                {data?.nutrition.nutrients[8].name}
+                            </div>
+                            <div className={s.singleNutrition}>
+                                <b>{Math.floor(data?.nutrition.nutrients[3].amount) + 'g'}</b>
+                                {data?.nutrition.nutrients[3].name}
+                            </div>
+                        </div>
                     </div>
                 </div>
 

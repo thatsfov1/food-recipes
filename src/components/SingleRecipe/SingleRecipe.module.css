@@ -62,3 +62,14 @@
 .info svg{
     color: #E85659;
 }
+
+@media (max-width: 1100px) {
+    .container{
+        width: 45%;
+    }
+}
+@media (max-width: 700px) {
+    .container{
+        width: 90%;
+    }
+}

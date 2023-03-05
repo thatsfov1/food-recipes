@@ -19,9 +19,10 @@
 }
 
 .catImage img{
-    height: 333px;
+    height: 20%;
     border-radius: 5px;
     width: 100%;
+    overflow: hidden;
     filter: brightness(0.6);
 }
 
@@ -43,5 +44,12 @@
     border-bottom: 3px solid #E85659;
     left: 25%;
     transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1200px) {
+    .singleCategory{
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
